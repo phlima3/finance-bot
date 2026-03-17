@@ -1,4 +1,4 @@
-FROM openclaw:2026.3.13
+FROM ghcr.io/openclaw/openclaw:2026.3.13
 
 # Install plugin dependencies
 WORKDIR /home/node/.openclaw/workspace/extensions/finance-db
