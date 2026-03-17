@@ -1,0 +1,67 @@
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-haiku-4-5"
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "1h"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "30m"
+      }
+    },
+    "list": [
+      { "id": "main" },
+      {
+        "id": "anthropic",
+        "name": "anthropic"
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "type": "route",
+      "agentId": "anthropic",
+      "match": {
+        "channel": "whatsapp",
+        "accountId": "default"
+      }
+    }
+  ],
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "whatsapp": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "selfChatMode": true,
+      "allowFrom": ["+5515998601308"],
+      "groupPolicy": "allowlist",
+      "debounceMs": 0,
+      "mediaMaxMb": 50
+    }
+  },
+  "gateway": {
+    "mode": "local"
+  },
+  "plugins": {
+    "load": {
+      "paths": [
+        "/home/node/.openclaw/workspace/extensions/finance-db"
+      ]
+    },
+    "entries": {
+      "finance-db": { "enabled": true },
+      "whatsapp": { "enabled": true }
+    }
+  }
+}
