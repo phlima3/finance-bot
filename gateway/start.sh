@@ -1,10 +1,10 @@
 #!/bin/sh
-set -e
 
 # Seed WhatsApp session into volume if empty
 if [ ! -d "/home/node/.openclaw/credentials/whatsapp/default" ] && [ -d "/home/node/.openclaw/credentials-seed/whatsapp/default" ]; then
   echo "Seeding WhatsApp session from image into volume..."
-  cp -r /home/node/.openclaw/credentials-seed/whatsapp /home/node/.openclaw/credentials/whatsapp
+  mkdir -p /home/node/.openclaw/credentials/whatsapp 2>/dev/null || true
+  cp -r /home/node/.openclaw/credentials-seed/whatsapp/* /home/node/.openclaw/credentials/whatsapp/ 2>/dev/null || true
 fi
 
 # Sync database schema on startup
