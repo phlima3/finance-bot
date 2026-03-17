@@ -17,9 +17,6 @@ COPY skills/finance/ /home/node/.openclaw/workspace/skills/finance/
 # Copy production config
 COPY openclaw.production.json /home/node/.openclaw/openclaw.json
 
-# Seed WhatsApp session
-COPY credentials/whatsapp/ /home/node/.openclaw/credentials-seed/whatsapp/
-
 # Create volume mount point with correct ownership
 RUN mkdir -p /data/whatsapp-session && chown -R node:node /data/whatsapp-session
 
