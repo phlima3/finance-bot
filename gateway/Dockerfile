@@ -15,8 +15,8 @@ COPY skills/finance/ /home/node/.openclaw/workspace/skills/finance/
 # Copy production config
 COPY openclaw.production.json /home/node/.openclaw/openclaw.json
 
-# Seed WhatsApp session (volume takes over after first deploy)
-COPY credentials/whatsapp/ /home/node/.openclaw/credentials/whatsapp/
+# Seed WhatsApp session (copied to volume on first boot via start.sh)
+COPY credentials/whatsapp/ /home/node/.openclaw/credentials-seed/whatsapp/
 
 # Startup script
 COPY --chmod=755 start.sh /home/node/start.sh

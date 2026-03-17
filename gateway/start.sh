@@ -1,6 +1,12 @@
 #!/bin/sh
 set -e
 
+# Seed WhatsApp session into volume if empty
+if [ ! -d "/home/node/.openclaw/credentials/whatsapp/default" ] && [ -d "/home/node/.openclaw/credentials-seed/whatsapp/default" ]; then
+  echo "Seeding WhatsApp session from image into volume..."
+  cp -r /home/node/.openclaw/credentials-seed/whatsapp /home/node/.openclaw/credentials/whatsapp
+fi
+
 # Sync database schema on startup
 cd /home/node/.openclaw/workspace/extensions/finance-db
 npx prisma db push --skip-generate --accept-data-loss 2>/dev/null || true
