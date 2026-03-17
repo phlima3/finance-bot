@@ -16,8 +16,7 @@ COPY skills/finance/ /home/node/.openclaw/workspace/skills/finance/
 COPY openclaw.production.json /home/node/.openclaw/openclaw.json
 
 # Startup script
-COPY start.sh /home/node/start.sh
-RUN chmod +x /home/node/start.sh
+COPY --chmod=755 start.sh /home/node/start.sh
 
 WORKDIR /home/node
 EXPOSE 8080
