@@ -1,6 +1,7 @@
 import { saveTransactionTool } from './tools/save-transaction.js'
 import { checkAlertsTool } from './tools/check-alerts.js'
 import { queryTool } from './tools/query.js'
+import { transcribeAudioTool } from './tools/transcribe-audio.js'
 
 interface PluginApi {
   registerTool(tool: {
@@ -17,4 +18,5 @@ export default function (api: PluginApi) {
   api.registerTool(saveTransactionTool)
   api.registerTool(checkAlertsTool)
   api.registerTool(queryTool)
+  api.registerTool(transcribeAudioTool)
 }
