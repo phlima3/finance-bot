@@ -34,6 +34,8 @@ async function getData() {
     value,
   }))
 
+  const monthName = now.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })
+
   return {
     transactions: transactions.map((t) => ({
       ...t,
@@ -42,22 +44,31 @@ async function getData() {
     totalExpenses,
     totalIncome,
     categories,
+    monthName,
   }
 }
 
 export default async function DashboardPage() {
-  const { transactions, totalExpenses, totalIncome, categories } = await getData()
+  const { transactions, totalExpenses, totalIncome, categories, monthName } =
+    await getData()
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8">
-      <h1 className="mb-8 text-3xl font-bold">Finance Bot</h1>
+    <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div className="mb-8 animate-fade-in">
+        <h1 className="text-2xl font-bold tracking-tight text-text-primary">
+          Visão Geral
+        </h1>
+        <p className="mt-1 text-sm text-text-muted">
+          <span className="capitalize text-accent-gold">{monthName}</span>
+        </p>
+      </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6">
         <MonthlyTotals totalExpenses={totalExpenses} totalIncome={totalIncome} />
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <CategoryChart categories={categories} />
-          <TransactionList transactions={transactions.slice(0, 20)} />
+          <TransactionList transactions={transactions.slice(0, 15)} />
         </div>
       </div>
     </main>
