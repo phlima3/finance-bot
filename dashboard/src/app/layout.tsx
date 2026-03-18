@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Outfit, JetBrains_Mono } from 'next/font/google'
+import { Navbar } from '@/components/navbar'
 import './globals.css'
 
 const outfit = Outfit({
@@ -26,7 +27,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${outfit.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans bg-bg-primary text-text-primary antialiased">
+      <body className="font-sans bg-bg-primary text-text-primary antialiased min-h-screen">
+        <Navbar />
         {children}
       </body>
     </html>
