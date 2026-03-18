@@ -26,7 +26,7 @@ RUN chown -R node:node /home/node/.openclaw
 # Startup script
 COPY --chmod=755 start.sh /home/node/start.sh
 
-USER node
+# Run as root so start.sh can fix Railway volume permissions, then drop to node
 WORKDIR /home/node
 EXPOSE 8080
 
